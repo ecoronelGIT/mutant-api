@@ -13,7 +13,7 @@ References used
     https://codurance.com/2017/12/08/introducing-idd/
 *   A Case for Outside-In Development: 
     https://codurance.com/2017/10/23/outside-in-design/
-*   Crafted Design: 
+*   Crafted Design:
     https://jaxenter.com/crafted-design-an-introduction-to-interaction-driven-design-117563.html
     
 
