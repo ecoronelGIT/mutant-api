@@ -1,9 +1,6 @@
 package com.ecoronelgit.api.core.action;
 
-import com.ecoronelgit.api.core.exception.EmptyDNASequenceException;
-import com.ecoronelgit.api.core.exception.IncorrectDNASequenceException;
-import com.ecoronelgit.api.core.exception.NullDNASequenceException;
-import com.ecoronelgit.api.core.exception.SquareMatrixDNASequenceException;
+import com.ecoronelgit.api.core.exception.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,6 +15,7 @@ public class IsMutantTest {
     private static final String DNA_SEQUENCE_SQUARE_MATRIX_ERROR_MESSAGE = "DNA Sequence is not a square matrix, should have same columns and rows";
     private static final String NULL_DNA_SEQUENCE_ERROR_MESSAGE = "DNA Sequence has a null sequence";
     private static final String DNA_SEQUENCE_INCORRECT_CHARACTER_ERROR_MESSAGE = "DNA Sequence has an incorrect character";
+    private static final String SHORT_DNA_SEQUENCE_ERROR_MESSAGE = "DNA Sequence is too short";
     private IsMutant isMutant;
     private Throwable thrownException;
     private boolean isMutantResult;
@@ -61,6 +59,22 @@ public class IsMutantTest {
         whenExecuteIsMutantAction(dnaSequence);
 
         thenShouldGiveAnIncorrectCharacterException();
+    }
+
+    @Test
+    public void shouldGiveAnErrorWhenDNASequenceIsTooShort() {
+        givenIsMutantAction();
+
+        String[] dnaSequence = {"ATG","CAG","CAG"};
+
+        whenExecuteIsMutantAction(dnaSequence);
+
+        thenShouldGiveAnShortDNAException();
+    }
+
+    private void thenShouldGiveAnShortDNAException() {
+        assertThat(thrownException).isExactlyInstanceOf(ShortDNASequenceException.class)
+                .hasMessage(SHORT_DNA_SEQUENCE_ERROR_MESSAGE);
     }
 
     private void thenShouldGiveAnIncorrectCharacterException() {
