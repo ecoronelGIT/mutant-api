@@ -1,5 +1,5 @@
 package com.ecoronelgit.api.core.action.rule;
 
-public interface DNARule {
+public interface DNAValidator {
     void apply(String[] dnaSequence);
 }

@@ -2,7 +2,7 @@ package com.ecoronelgit.api.core.action.rule;
 
 import com.ecoronelgit.api.core.exception.IncorrectDNASequenceException;
 
-public class IncorrectCharacterDNARule implements DNARule {
+public class IncorrectCharacterDNAValidator implements DNAValidator {
     private static final String REGEX_FOR_DNA = "[acgtACGT]+\\.?";
 
     @Override

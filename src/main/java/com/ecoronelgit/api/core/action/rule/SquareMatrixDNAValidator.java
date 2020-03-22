@@ -2,7 +2,7 @@ package com.ecoronelgit.api.core.action.rule;
 
 import com.ecoronelgit.api.core.exception.SquareMatrixDNASequenceException;
 
-public class SquareMatrixDNARule implements DNARule {
+public class SquareMatrixDNAValidator implements DNAValidator {
     @Override
     public void apply(String[] dnaSequence) {
         if(dnaSequenceIsNotSquareMatrix(dnaSequence)) {

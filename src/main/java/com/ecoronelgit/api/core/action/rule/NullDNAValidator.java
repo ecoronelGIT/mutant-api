@@ -2,7 +2,7 @@ package com.ecoronelgit.api.core.action.rule;
 
 import com.ecoronelgit.api.core.exception.NullDNASequenceException;
 
-public class NullDNARule implements DNARule {
+public class NullDNAValidator implements DNAValidator {
     @Override
     public void apply(String[] dnaSequence) {
         for(String row : dnaSequence)
