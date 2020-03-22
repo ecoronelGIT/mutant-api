@@ -1,7 +1,8 @@
 package com.ecoronelgit.api.core.action;
 
 import com.ecoronelgit.api.core.exception.EmptyDNASequenceException;
-import com.ecoronelgit.api.core.exception.MatrixDNASequenceException;
+import com.ecoronelgit.api.core.exception.NullDNASequenceException;
+import com.ecoronelgit.api.core.exception.SquareMatrixDNASequenceException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,7 +14,8 @@ public class IsMutantTest {
     private static final String[] EMPTY_DNA_SEQUENCE = new String[0];
     private static final String[] NULL_DNA_SEQUENCE = new String[4];
     private static final String DNA_SEQUENCE_IS_EMPTY_MESSAGE = "DNA Sequence is empty";
-    private static final String DNA_SEQUENCE_SQUARE_MATRIX_ERROR_MESSAGE = "DNA sequence is not a square matrix, should have same columns and rows";
+    private static final String DNA_SEQUENCE_SQUARE_MATRIX_ERROR_MESSAGE = "DNA Sequence is not a square matrix, should have same columns and rows";
+    private static final String NULL_DNA_SEQUENCE_ERROR_MESSAGE = "DNA Sequence has a null sequence";
     private IsMutant isMutant;
     private Throwable thrownException;
     private boolean isMutantResult;
@@ -33,12 +35,29 @@ public class IsMutantTest {
 
         whenExecuteIsMutantAction(NULL_DNA_SEQUENCE);
 
+        thenShouldGiveAnNullDNASequenceException();
+    }
+
+    @Test
+    public void shouldGiveAnErrorWhenDNASequenceIsNotASquareMatrix() {
+        givenIsMutantAction();
+
+        String[] dnaSequence = {"ATGCGA","CAGTGC","","AGAAGG","CCCCTA","TCACTG"};
+
+        whenExecuteIsMutantAction(dnaSequence);
+
         thenShouldGiveAnNotSquareMatrixException();
+
     }
 
     private void thenShouldGiveAnNotSquareMatrixException() {
-        assertThat(thrownException).isExactlyInstanceOf(MatrixDNASequenceException.class)
+        assertThat(thrownException).isExactlyInstanceOf(SquareMatrixDNASequenceException.class)
                 .hasMessage(DNA_SEQUENCE_SQUARE_MATRIX_ERROR_MESSAGE);
+    }
+
+    private void thenShouldGiveAnNullDNASequenceException() {
+        assertThat(thrownException).isExactlyInstanceOf(NullDNASequenceException.class)
+                .hasMessage(NULL_DNA_SEQUENCE_ERROR_MESSAGE);
     }
 
     private void thenShouldGiveAnEmptySequenceException() {
