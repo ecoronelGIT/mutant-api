@@ -1,6 +1,7 @@
 package com.ecoronelgit.api.core.action;
 
 import com.ecoronelgit.api.core.exception.EmptyDNASequenceException;
+import com.ecoronelgit.api.core.exception.IncorrectDNASequenceException;
 import com.ecoronelgit.api.core.exception.NullDNASequenceException;
 import com.ecoronelgit.api.core.exception.SquareMatrixDNASequenceException;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ public class IsMutantTest {
     private static final String DNA_SEQUENCE_IS_EMPTY_MESSAGE = "DNA Sequence is empty";
     private static final String DNA_SEQUENCE_SQUARE_MATRIX_ERROR_MESSAGE = "DNA Sequence is not a square matrix, should have same columns and rows";
     private static final String NULL_DNA_SEQUENCE_ERROR_MESSAGE = "DNA Sequence has a null sequence";
+    private static final String DNA_SEQUENCE_INCORRECT_CHARACTER_ERROR_MESSAGE = "DNA Sequence has an incorrect character";
     private IsMutant isMutant;
     private Throwable thrownException;
     private boolean isMutantResult;
@@ -49,6 +51,23 @@ public class IsMutantTest {
         thenShouldGiveAnNotSquareMatrixException();
 
     }
+
+    @Test
+    public void shouldGiveAnErrorWhenDNASequenceHaveIncorrectCharacters() {
+        givenIsMutantAction();
+
+        String[] dnaSequence = {"ATGEGA","CAGTGC","CAGTGC","AGAAGG","CCHCTA","TCACTG"};
+
+        whenExecuteIsMutantAction(dnaSequence);
+
+        thenShouldGiveAnIncorrectCharacterException();
+    }
+
+    private void thenShouldGiveAnIncorrectCharacterException() {
+        assertThat(thrownException).isExactlyInstanceOf(IncorrectDNASequenceException.class)
+                .hasMessage(DNA_SEQUENCE_INCORRECT_CHARACTER_ERROR_MESSAGE);
+    }
+
 
     private void thenShouldGiveAnNotSquareMatrixException() {
         assertThat(thrownException).isExactlyInstanceOf(SquareMatrixDNASequenceException.class)
