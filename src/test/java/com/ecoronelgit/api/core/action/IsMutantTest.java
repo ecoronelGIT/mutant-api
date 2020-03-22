@@ -16,15 +16,20 @@ public class IsMutantTest {
     private static final String NULL_DNA_SEQUENCE_ERROR_MESSAGE = "DNA Sequence has a null sequence";
     private static final String DNA_SEQUENCE_INCORRECT_CHARACTER_ERROR_MESSAGE = "DNA Sequence has an incorrect character";
     private static final String SHORT_DNA_SEQUENCE_ERROR_MESSAGE = "DNA Sequence is too short";
+    public static final String[] NOT_SQUARE_MATRIX_DNA_SEQUENCE = {"ATGCGA", "CAGTGC", "", "AGAAGG", "CCCCTA", "TCACTG"};
+    public static final String[] INCORRECT_CHARACTERS_DNA_SEQUENCE = {"ATGEGA", "CAGTGC", "CAGTGC", "AGAAGG", "CCHCTA", "TCACTG"};
+    public static final String[] SHORT_DNA_SEQUENCE = {"ATG", "CAG", "CAG"};
     private IsMutant isMutant;
     private Throwable thrownException;
     private boolean isMutantResult;
+    private String[] dnaSequence;
 
     @Test
     public void shouldGiveAnErrorWhenEmptyDNASequence() {
         givenIsMutantAction();
+        givenDNASequence(EMPTY_DNA_SEQUENCE);
 
-        whenExecuteIsMutantAction(EMPTY_DNA_SEQUENCE);
+        whenExecuteIsMutantAction();
 
         thenShouldGiveAnEmptySequenceException();
     }
@@ -32,8 +37,9 @@ public class IsMutantTest {
     @Test
     public void shouldGiveAnErrorWhenHasNullDNASequence() {
         givenIsMutantAction();
+        givenDNASequence(NULL_DNA_SEQUENCE);
 
-        whenExecuteIsMutantAction(NULL_DNA_SEQUENCE);
+        whenExecuteIsMutantAction();
 
         thenShouldGiveAnNullDNASequenceException();
     }
@@ -41,10 +47,9 @@ public class IsMutantTest {
     @Test
     public void shouldGiveAnErrorWhenDNASequenceIsNotASquareMatrix() {
         givenIsMutantAction();
+        givenDNASequence(NOT_SQUARE_MATRIX_DNA_SEQUENCE);
 
-        String[] dnaSequence = {"ATGCGA","CAGTGC","","AGAAGG","CCCCTA","TCACTG"};
-
-        whenExecuteIsMutantAction(dnaSequence);
+        whenExecuteIsMutantAction();
 
         thenShouldGiveAnNotSquareMatrixException();
 
@@ -53,10 +58,9 @@ public class IsMutantTest {
     @Test
     public void shouldGiveAnErrorWhenDNASequenceHaveIncorrectCharacters() {
         givenIsMutantAction();
+        givenDNASequence(INCORRECT_CHARACTERS_DNA_SEQUENCE);
 
-        String[] dnaSequence = {"ATGEGA","CAGTGC","CAGTGC","AGAAGG","CCHCTA","TCACTG"};
-
-        whenExecuteIsMutantAction(dnaSequence);
+        whenExecuteIsMutantAction();
 
         thenShouldGiveAnIncorrectCharacterException();
     }
@@ -64,12 +68,29 @@ public class IsMutantTest {
     @Test
     public void shouldGiveAnErrorWhenDNASequenceIsTooShort() {
         givenIsMutantAction();
+        givenDNASequence(SHORT_DNA_SEQUENCE);
 
-        String[] dnaSequence = {"ATG","CAG","CAG"};
-
-        whenExecuteIsMutantAction(dnaSequence);
+        whenExecuteIsMutantAction();
 
         thenShouldGiveAnShortDNAException();
+    }
+
+    @Test
+    public void shouldGiveMutantWhenHaveTwoOrMoreHorizontalEqualSequence() {
+        givenIsMutantAction();
+        givenDNASequence(new String[]{"CCCCTA","CAGTGC","TTATGT","AGAAGG","ATGCGA","TTTTTG"});
+
+        whenExecuteIsMutantAction();
+
+        thenShouldBeAMutant();
+    }
+
+    private void givenDNASequence(String[] dnaSequence) {
+        this.dnaSequence = dnaSequence;
+    }
+
+    private void thenShouldBeAMutant() {
+        assertThat(isMutantResult).isEqualTo(true);
     }
 
     private void thenShouldGiveAnShortDNAException() {
@@ -98,7 +119,7 @@ public class IsMutantTest {
                 .hasMessage(DNA_SEQUENCE_IS_EMPTY_MESSAGE);
     }
 
-    private void whenExecuteIsMutantAction(String[] dnaSequence) {
+    private void whenExecuteIsMutantAction() {
         thrownException = catchThrowable(() -> isMutantResult = isMutant.execute(dnaSequence));
     }
 
