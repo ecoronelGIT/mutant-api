@@ -96,6 +96,17 @@ public class IsMutantTest {
         thenShouldBeAMutant();
     }
 
+    @Test
+    public void shouldGiveMutantWhenHaveTwoOrMoreObliqueEqualSequence() {
+        givenIsMutantAction();
+
+        givenDNASequence(new String[]{"ATGCGA","TAGGCA","GAAGCC","TAAAGC","AGTAAG","CCACTG"});
+
+        whenExecuteIsMutantAction();
+
+        thenShouldBeAMutant();
+    }
+
     private void givenDNASequence(String[] dnaSequence) {
         this.dnaSequence = dnaSequence;
     }
