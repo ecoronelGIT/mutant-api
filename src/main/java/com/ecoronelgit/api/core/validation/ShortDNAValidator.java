@@ -1,4 +1,4 @@
-package com.ecoronelgit.api.core.action.validator;
+package com.ecoronelgit.api.core.validation;
 
 import com.ecoronelgit.api.core.exception.ShortDNASequenceException;
 

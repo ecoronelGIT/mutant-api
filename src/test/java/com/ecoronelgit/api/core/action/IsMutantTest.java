@@ -1,7 +1,9 @@
 package com.ecoronelgit.api.core.action;
 
 import com.ecoronelgit.api.core.exception.*;
+import com.ecoronelgit.api.core.service.DNASequenceService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
@@ -23,6 +25,7 @@ public class IsMutantTest {
     private Throwable thrownException;
     private boolean isMutantResult;
     private String[] dnaSequence;
+    private DNASequenceService dnaSequenceService;
 
     @Test
     public void shouldGiveAnErrorWhenEmptyDNASequence() {
@@ -76,9 +79,10 @@ public class IsMutantTest {
     }
 
     @Test
-    public void shouldGiveMutantWhenHaveTwoOrMoreHorizontalEqualSequence() {
+    public void shouldGiveMutantWhenDNAServiceReturnTrue() {
         givenIsMutantAction();
         givenDNASequence(new String[]{"CCCCTA","CAGTGC","TTATGT","AGAAGG","ATGCGA","TTTTTG"});
+        Mockito.when(dnaSequenceService.dnaSequenceContainsMutant(Mockito.any())).thenReturn(true);
 
         whenExecuteIsMutantAction();
 
@@ -86,51 +90,14 @@ public class IsMutantTest {
     }
 
     @Test
-    public void shouldGiveMutantWhenHaveTwoOrMoreVerticalEqualSequence() {
+    public void shouldNotGiveMutantWhenDNAServiceReturnFalse() {
         givenIsMutantAction();
-
-        givenDNASequence(new String[]{"ATGCGA","CAGTGC","CTATGT","CGAAGG","CCGCTA","CCACTG"});
-
-        whenExecuteIsMutantAction();
-
-        thenShouldBeAMutant();
-    }
-
-    @Test
-    public void shouldGiveMutantWhenHaveTwoOrMoreObliqueEqualSequence() {
-        givenIsMutantAction();
-
-        givenDNASequence(new String[]{"ATGCGA","TAGGCA","GAAGCC","TAAAGC","AGTAAG","CCACTG"});
-
-        whenExecuteIsMutantAction();
-
-        thenShouldBeAMutant();
-    }
-
-    @Test
-    public void shouldGiveMutantWhenHaveTwoOrMoreDifferentEqualSequence() {
-        givenIsMutantAction();
-
-        givenDNASequence(new String[]{  "ATGCGA", "GAGGCA", "GAATCC", "CAAAGC", "GGTAAG", "CCCCTG"});
-
-        whenExecuteIsMutantAction();
-
-        thenShouldBeAMutant();
-    }
-
-    @Test
-    public void shouldNotGiveMutantWhenHaveTwoOrMoreDifferentEqualSequence() {
-        givenIsMutantAction();
-
-        givenDNASequence(new String[]{  "ATGCGA", "CAGTGC", "TTATTT", "AGACGG", "GCGTCA", "TCACTG"});
+        givenDNASequence(new String[]{"ATGCGA", "CAGTGC", "TTATTT", "AGACGG", "GCGTCA", "TCACTG"});
+        Mockito.when(dnaSequenceService.dnaSequenceContainsMutant(Mockito.any())).thenReturn(false);
 
         whenExecuteIsMutantAction();
 
         thenShouldNotBeAMutant();
-    }
-
-    private void givenDNASequence(String[] dnaSequence) {
-        this.dnaSequence = dnaSequence;
     }
 
     private void thenShouldBeAMutant() {
@@ -139,6 +106,10 @@ public class IsMutantTest {
 
     private void thenShouldNotBeAMutant() {
         assertThat(isMutantResult).isEqualTo(false);
+    }
+
+    private void givenDNASequence(String[] dnaSequence) {
+        this.dnaSequence = dnaSequence;
     }
 
     private void thenShouldGiveAnShortDNAException() {
@@ -150,7 +121,6 @@ public class IsMutantTest {
         assertThat(thrownException).isExactlyInstanceOf(IncorrectDNASequenceException.class)
                 .hasMessage(DNA_SEQUENCE_INCORRECT_CHARACTER_ERROR_MESSAGE);
     }
-
 
     private void thenShouldGiveAnNotSquareMatrixException() {
         assertThat(thrownException).isExactlyInstanceOf(SquareMatrixDNASequenceException.class)
@@ -172,6 +142,7 @@ public class IsMutantTest {
     }
 
     private void givenIsMutantAction() {
-        isMutant = new IsMutant();
+        dnaSequenceService = Mockito.mock(DNASequenceService.class);
+        isMutant = new IsMutant(dnaSequenceService);
     }
 }

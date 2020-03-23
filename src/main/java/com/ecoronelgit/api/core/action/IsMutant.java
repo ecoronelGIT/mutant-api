@@ -1,21 +1,25 @@
 package com.ecoronelgit.api.core.action;
 
-import com.ecoronelgit.api.core.action.util.DNASequenceUtil;
-import com.ecoronelgit.api.core.action.validator.*;
+import com.ecoronelgit.api.core.service.DNASequenceService;
+import com.ecoronelgit.api.core.validation.*;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class IsMutant {
+    private final DNASequenceService dnaSequenceService;
     private List<DNAValidator> dnaValidators =  Arrays.asList(  new EmptyDNAValidator(),
                                                                 new NullDNAValidator(),
                                                                 new SquareMatrixDNAValidator(),
                                                                 new IncorrectCharacterDNAValidator(),
                                                                 new ShortDNAValidator());
+    public IsMutant(DNASequenceService dnaSequenceService) {
+        this.dnaSequenceService = dnaSequenceService;
+    }
 
     public boolean execute(String[] dnaSequence) {
         dnaValidators.forEach(dnaRule -> dnaRule.apply(dnaSequence));
-        if(DNASequenceUtil.checkDNASequenceIsMutant(dnaSequence))
+        if(dnaSequenceService.dnaSequenceContainsMutant(dnaSequence))
             return true;
         return false;
     }

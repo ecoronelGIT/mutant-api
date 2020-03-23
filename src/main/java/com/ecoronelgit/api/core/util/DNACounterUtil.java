@@ -1,11 +1,11 @@
-package com.ecoronelgit.api.core.action.util;
+package com.ecoronelgit.api.core.util;
 
-public class DNACounter {
+public class DNACounterUtil {
     public static final int INITIAL_COUNTER = 1;
     private char dna;
     private int counter = INITIAL_COUNTER;
 
-    public DNACounter(char dna) {
+    public DNACounterUtil(char dna) {
         this.dna = dna;
     }
 

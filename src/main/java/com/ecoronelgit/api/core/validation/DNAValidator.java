@@ -1,4 +1,4 @@
-package com.ecoronelgit.api.core.action.validator;
+package com.ecoronelgit.api.core.validation;
 
 public interface DNAValidator {
     void apply(String[] dnaSequence);
