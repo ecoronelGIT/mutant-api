@@ -85,6 +85,17 @@ public class IsMutantTest {
         thenShouldBeAMutant();
     }
 
+    @Test
+    public void shouldGiveMutantWhenHaveTwoOrMoreVerticalEqualSequence() {
+        givenIsMutantAction();
+
+        givenDNASequence(new String[]{"ATGCGA","CAGTGC","CTATGT","CGAAGG","CCGCTA","CCACTG"});
+
+        whenExecuteIsMutantAction();
+
+        thenShouldBeAMutant();
+    }
+
     private void givenDNASequence(String[] dnaSequence) {
         this.dnaSequence = dnaSequence;
     }
