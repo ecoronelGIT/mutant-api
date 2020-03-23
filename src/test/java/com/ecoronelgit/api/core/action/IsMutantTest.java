@@ -107,12 +107,38 @@ public class IsMutantTest {
         thenShouldBeAMutant();
     }
 
+    @Test
+    public void shouldGiveMutantWhenHaveTwoOrMoreDifferentEqualSequence() {
+        givenIsMutantAction();
+
+        givenDNASequence(new String[]{  "ATGCGA", "GAGGCA", "GAATCC", "CAAAGC", "GGTAAG", "CCCCTG"});
+
+        whenExecuteIsMutantAction();
+
+        thenShouldBeAMutant();
+    }
+
+    @Test
+    public void shouldNotGiveMutantWhenHaveTwoOrMoreDifferentEqualSequence() {
+        givenIsMutantAction();
+
+        givenDNASequence(new String[]{  "ATGCGA", "CAGTGC", "TTATTT", "AGACGG", "GCGTCA", "TCACTG"});
+
+        whenExecuteIsMutantAction();
+
+        thenShouldNotBeAMutant();
+    }
+
     private void givenDNASequence(String[] dnaSequence) {
         this.dnaSequence = dnaSequence;
     }
 
     private void thenShouldBeAMutant() {
         assertThat(isMutantResult).isEqualTo(true);
+    }
+
+    private void thenShouldNotBeAMutant() {
+        assertThat(isMutantResult).isEqualTo(false);
     }
 
     private void thenShouldGiveAnShortDNAException() {

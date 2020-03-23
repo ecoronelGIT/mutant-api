@@ -17,7 +17,7 @@ public class IsMutant {
         dnaValidators.forEach(dnaRule -> dnaRule.apply(dnaSequence));
         if(DNASequenceUtil.checkDNASequenceIsMutant(dnaSequence))
             return true;
-        throw new UnsupportedOperationException();
+        return false;
     }
 
 }
