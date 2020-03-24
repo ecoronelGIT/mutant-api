@@ -1,6 +1,6 @@
-package com.ecoronelgit.api.core.service;
+package com.ecoronelgit.api.core.domain;
 
-import com.ecoronelgit.api.core.util.DNACounterUtil;
+import com.ecoronelgit.api.core.domain.util.DNACounterUtil;
 
 import java.util.HashMap;
 import java.util.Map;

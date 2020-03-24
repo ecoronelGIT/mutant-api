@@ -1,6 +1,6 @@
-package com.ecoronelgit.api.core.validation;
+package com.ecoronelgit.api.core.action.validation;
 
-import com.ecoronelgit.api.core.exception.IncorrectDNASequenceException;
+import com.ecoronelgit.api.core.domain.exception.IncorrectDNASequenceException;
 
 public class IncorrectCharacterDNAValidator implements DNAValidator {
     private static final String REGEX_FOR_DNA = "[acgtACGT]+\\.?";

@@ -1,7 +1,7 @@
 package com.ecoronelgit.api.core.action;
 
-import com.ecoronelgit.api.core.exception.*;
-import com.ecoronelgit.api.core.service.DNASequenceService;
+import com.ecoronelgit.api.core.domain.exception.*;
+import com.ecoronelgit.api.core.domain.DNASequenceService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

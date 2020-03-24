@@ -1,7 +1,7 @@
 package com.ecoronelgit.api.core.configuration;
 
 import com.ecoronelgit.api.core.action.IsMutant;
-import com.ecoronelgit.api.core.service.DNASequenceService;
+import com.ecoronelgit.api.core.domain.DNASequenceService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

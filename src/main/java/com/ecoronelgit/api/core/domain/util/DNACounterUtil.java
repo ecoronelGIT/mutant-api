@@ -1,4 +1,4 @@
-package com.ecoronelgit.api.core.util;
+package com.ecoronelgit.api.core.domain.util;
 
 public class DNACounterUtil {
     public static final int INITIAL_COUNTER = 1;

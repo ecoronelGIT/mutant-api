@@ -1,6 +1,6 @@
-package com.ecoronelgit.api.core.validation;
+package com.ecoronelgit.api.core.action.validation;
 
-import com.ecoronelgit.api.core.exception.NullDNASequenceException;
+import com.ecoronelgit.api.core.domain.exception.NullDNASequenceException;
 
 public class NullDNAValidator implements DNAValidator {
     @Override

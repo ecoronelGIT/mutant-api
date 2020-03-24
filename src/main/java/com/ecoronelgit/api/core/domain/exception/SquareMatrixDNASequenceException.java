@@ -1,4 +1,4 @@
-package com.ecoronelgit.api.core.exception;
+package com.ecoronelgit.api.core.domain.exception;
 
 public class SquareMatrixDNASequenceException extends RuntimeException{
     private static final String DNA_SEQUENCE_SQUARE_MATRIX_ERROR_MESSAGE = "DNA Sequence is not a square matrix, should have same columns and rows";

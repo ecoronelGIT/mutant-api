@@ -1,5 +1,6 @@
-package com.ecoronelgit.api.core.service;
+package com.ecoronelgit.api.core.domain;
 
+import com.ecoronelgit.api.core.domain.DNASequenceService;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

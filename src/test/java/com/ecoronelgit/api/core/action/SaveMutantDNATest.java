@@ -1,6 +1,6 @@
 package com.ecoronelgit.api.core.action;
 
-import com.ecoronelgit.api.core.exception.DNASequenceExistException;
+import com.ecoronelgit.api.core.domain.exception.DNASequenceExistException;
 import com.ecoronelgit.api.infrastructure.MemoryMutantDNARepository;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ public class SaveMutantDNATest {
     private String[] secondDNASequence;
 
     @Test
-    public void shouldSaveDNAMutantWhenActionIsCall() {
+    public void shouldSaveDNASequenceWhenActionIsCall() {
         givenMutantDNARepository();
         givenSaveMutantDNA();
         givenDNASequence();
@@ -27,7 +27,7 @@ public class SaveMutantDNATest {
     }
 
     @Test
-    public void shouldNotSaveSameDNAMutantWhenActionIsCall() {
+    public void shouldNotSaveSameDNASequenceWhenActionIsCall() {
         givenMutantDNARepository();
         givenSaveMutantDNA();
         givenDNASequence();
@@ -35,12 +35,16 @@ public class SaveMutantDNATest {
 
         whenSaveMutantDNA();
 
+        thenShouldGiveDNASequenceExitException();
+    }
+
+    private void thenShouldGiveDNASequenceExitException() {
         assertThat(thrownException).isExactlyInstanceOf(DNASequenceExistException.class)
                 .hasMessage(DNA_SEQUENCE_EXIST_ERROR_MESSAGE);
     }
 
     @Test
-    public void shouldSaveTwoDifferentDNAMutantWhenActionIsCall() {
+    public void shouldSaveTwoDifferentDNASequenceWhenActionIsCall() {
         givenMutantDNARepository();
         givenSaveMutantDNA();
         givenDNASequence();
@@ -57,7 +61,7 @@ public class SaveMutantDNATest {
     }
 
     private void givenDNASequenceIsSaved(String[] dnaSequence) {
-        saveMutantDNA.execute(dnaSequence);
+        saveMutantDNA.execute(dnaSequence, true);
     }
 
     private void thenMutantDNAShouldExist(String[] dnaSequence) {
@@ -65,7 +69,7 @@ public class SaveMutantDNATest {
     }
 
     private void whenSaveMutantDNA() {
-        thrownException = catchThrowable(() -> saveMutantDNA.execute(dnaSequence));
+        thrownException = catchThrowable(() -> saveMutantDNA.execute(dnaSequence, true));
     }
 
     private void givenDNASequence() {

@@ -1,7 +1,7 @@
 package com.ecoronelgit.api.core.action;
 
-import com.ecoronelgit.api.core.service.DNASequenceService;
-import com.ecoronelgit.api.core.validation.*;
+import com.ecoronelgit.api.core.domain.DNASequenceService;
+import com.ecoronelgit.api.core.action.validation.*;
 
 import java.util.Arrays;
 import java.util.List;

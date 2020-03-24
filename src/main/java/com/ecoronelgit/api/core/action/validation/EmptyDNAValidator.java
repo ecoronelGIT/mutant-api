@@ -1,6 +1,6 @@
-package com.ecoronelgit.api.core.validation;
+package com.ecoronelgit.api.core.action.validation;
 
-import com.ecoronelgit.api.core.exception.EmptyDNASequenceException;
+import com.ecoronelgit.api.core.domain.exception.EmptyDNASequenceException;
 
 public class EmptyDNAValidator implements DNAValidator {
     @Override

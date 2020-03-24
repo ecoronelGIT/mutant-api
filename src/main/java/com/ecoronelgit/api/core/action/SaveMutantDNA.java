@@ -1,7 +1,7 @@
 package com.ecoronelgit.api.core.action;
 
 import com.ecoronelgit.api.core.domain.MutantDNARepository;
-import com.ecoronelgit.api.core.exception.DNASequenceExistException;
+import com.ecoronelgit.api.core.domain.exception.DNASequenceExistException;
 
 public class SaveMutantDNA {
 
@@ -11,9 +11,9 @@ public class SaveMutantDNA {
         this.mutantDNARepository = mutantDNARepository;
     }
 
-    public void execute(String[] dnaSequence) {
+    public void execute(String[] dnaSequence, boolean isMutant) {
         if(mutantDNARepository.exist(dnaSequence))
             throw new DNASequenceExistException();
-        this.mutantDNARepository.save(dnaSequence);
+        this.mutantDNARepository.save(dnaSequence, isMutant);
     }
 }

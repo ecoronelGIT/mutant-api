@@ -1,4 +1,4 @@
-package com.ecoronelgit.api.core.exception;
+package com.ecoronelgit.api.core.domain.exception;
 
 public class EmptyDNASequenceException extends RuntimeException {
     private static final String DNA_SEQUENCE_IS_EMPTY_MESSAGE = "DNA Sequence is empty";

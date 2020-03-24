@@ -1,6 +1,6 @@
-package com.ecoronelgit.api.core.validation;
+package com.ecoronelgit.api.core.action.validation;
 
-import com.ecoronelgit.api.core.exception.ShortDNASequenceException;
+import com.ecoronelgit.api.core.domain.exception.ShortDNASequenceException;
 
 public class ShortDNAValidator implements DNAValidator {
     @Override

@@ -1,6 +1,6 @@
-package com.ecoronelgit.api.core.validation;
+package com.ecoronelgit.api.core.action.validation;
 
-import com.ecoronelgit.api.core.exception.SquareMatrixDNASequenceException;
+import com.ecoronelgit.api.core.domain.exception.SquareMatrixDNASequenceException;
 
 public class SquareMatrixDNAValidator implements DNAValidator {
     @Override
