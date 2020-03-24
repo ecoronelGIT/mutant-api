@@ -16,4 +16,10 @@ This app is builded with Interaction Driver Disign software design process.
     https://jaxenter.com/crafted-design-an-introduction-to-interaction-driven-design-117563.html
     
 
-How To Build:
+**How To Run:**
+
+`mvn spring-boot:run`
+
+**See API Information:**
+
+`http://URL-SERVER:PORT/swagger-ui.html`
