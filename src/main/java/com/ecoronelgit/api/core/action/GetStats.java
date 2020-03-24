@@ -14,6 +14,7 @@ public class GetStats {
     public MutantStats execute() {
         int mutants = mutantDNARepository.getDNASequences(true).size();
         int humans = mutantDNARepository.getDNASequences(false).size();
-        return new MutantStats(mutants, humans, mutants/humans);
+        double ratio = humans > 0 ? Double.valueOf(mutants)/Double.valueOf(humans) : mutants;
+        return new MutantStats(mutants, humans, ratio);
     }
 }

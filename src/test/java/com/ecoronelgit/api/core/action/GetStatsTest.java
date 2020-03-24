@@ -18,7 +18,7 @@ public class GetStatsTest {
     private MutantStats mutantStats;
 
     @Test
-    public void XXX() {
+    public void shouldHaveStats() {
         givenMemoryMutantDNARepository();
         givenGetStats();
         givenDNASequence();
@@ -33,7 +33,7 @@ public class GetStatsTest {
     private void thenShouldHaveTheSameData() {
         assertThat(mutantStats.getCountMutantDNA()).isEqualTo(FOUR_AMOUNT_REPETITION);
         assertThat(mutantStats.getCountHumanDNA()).isEqualTo(TEN_AMOUNT_REPETITION);
-        assertThat(mutantStats.getRatio()).isEqualTo(FOUR_AMOUNT_REPETITION/TEN_AMOUNT_REPETITION);
+        assertThat(mutantStats.getRatio()).isEqualTo(Double.valueOf(FOUR_AMOUNT_REPETITION)/Double.valueOf(TEN_AMOUNT_REPETITION));
     }
 
     private void whenGetStats() {

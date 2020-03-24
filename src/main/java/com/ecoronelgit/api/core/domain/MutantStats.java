@@ -5,7 +5,7 @@ public class MutantStats {
     private int countHumanDNA;
     private double ratio;
 
-    public MutantStats(int mutants, int humans, int ratio) {
+    public MutantStats(int mutants, int humans, double ratio) {
         this.countMutantDNA = mutants;
         this.countHumanDNA = humans;
         this.ratio = ratio;
