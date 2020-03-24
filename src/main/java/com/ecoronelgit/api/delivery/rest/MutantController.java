@@ -48,6 +48,7 @@ public class MutantController {
         }
     }
 
+    @ApiOperation(value = "Get Stats for mutant/human verifications.")
     @GetMapping("/stats")
     public MutantStatsDTO stats() {
         return new MutantStatsDTO(getStats.execute());

@@ -2,12 +2,18 @@ package com.ecoronelgit.api.delivery.dto;
 
 import com.ecoronelgit.api.core.domain.MutantStats;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel(description = "Mutant Stats")
 public class MutantStatsDTO {
+    @ApiModelProperty(notes = "Count of mutant verifications")
     @JsonProperty("count_mutant_dna")
     private int countMutantDNA;
+    @ApiModelProperty(notes = "Count of human verifications")
     @JsonProperty("count_human_dna")
     private int countHumanDNA;
+    @ApiModelProperty(notes = "Average between mutants over humans (mutants/humans)")
     private double ratio;
 
     public MutantStatsDTO(MutantStats mutantStats) {
