@@ -1,4 +1,4 @@
-package com.ecoronelgit.api.configuration;
+package com.ecoronelgit.api.core.configuration;
 
 import com.ecoronelgit.api.core.action.IsMutant;
 import com.ecoronelgit.api.core.service.DNASequenceService;
