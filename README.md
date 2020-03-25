@@ -23,3 +23,7 @@ This app is builded with Interaction Driver Disign software design process.
 **See API Information:**
 
 `http://URL-SERVER:PORT/swagger-ui.html`
+
+**AWS url**
+
+`http://ec2-52-50-167-37.eu-west-1.compute.amazonaws.com/swagger-ui.html`
