@@ -16,11 +16,14 @@ public class MutantTest {
     private static final String CONTENT_TYPE = "application/json";
     private static final String POST = "POST";
     private static final String GET = "GET";
+    private static final String DELETE = "DELETE";
     private static final String BASE_URL = "http://localhost:8080/mutant";
     private static final String STATS_URL = "http://localhost:8080/stats";
+    private static final String RESET_URL = "http://localhost:8080/reset";
 
     @Test
     public void shouldGiveStatusCode200() {
+        resetMutantRestApi();
         String json = "{ \"dna\":[\"ATGCGA\",\"CAGTGC\",\"TTATGT\",\"AGAAGG\",\"CCCCTA\",\"TCACTG\"] }";
         given()
                 .contentType(CONTENT_TYPE)
@@ -33,6 +36,7 @@ public class MutantTest {
 
     @Test
     public void shouldGiveStatusCode403() {
+        resetMutantRestApi();
         String json = "{ \"dna\":[\"ATGCGA\",\"CAGTGC\",\"TTATTT\",\"AGACGG\",\"GCGTCA\",\"TCACTG\"] }";
         given()
                 .contentType(CONTENT_TYPE)
@@ -45,6 +49,7 @@ public class MutantTest {
 
     @Test
     public void shouldGiveStatusCode403WithIncorrectDNA() {
+        resetMutantRestApi();
         String json = "{ \"dna\":[\"ATGCGA\",\"CAGTG\",\"TTATTT\",\"AGACGG\",\"GCGTCA\",\"TCACTG\"] }";
         given()
                 .contentType(CONTENT_TYPE)
@@ -57,6 +62,7 @@ public class MutantTest {
 
     @Test
     public void shouldGiveStatsWhenSaveSeveralData() {
+        resetMutantRestApi();
         givenSaveFourMutantOneRepeated();
         givenSaveTenHumanOneRepeated();
 
@@ -101,4 +107,12 @@ public class MutantTest {
                     .request(POST, BASE_URL);
         }
     }
+
+    private void resetMutantRestApi() {
+        given()
+                .contentType(CONTENT_TYPE)
+                .when()
+                .request(DELETE, RESET_URL);
+    }
+
 }

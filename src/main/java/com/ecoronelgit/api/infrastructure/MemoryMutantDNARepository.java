@@ -26,4 +26,9 @@ public class MemoryMutantDNARepository implements MutantDNARepository {
         return this.sequences.stream().filter(sequence -> sequence.isMutant() == isMutant)
                 .map(sequence -> sequence.getDna()).collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteAll() {
+        this.sequences = new ArrayList<>();
+    }
 }

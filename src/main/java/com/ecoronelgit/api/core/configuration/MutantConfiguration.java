@@ -1,5 +1,6 @@
 package com.ecoronelgit.api.core.configuration;
 
+import com.ecoronelgit.api.core.action.DeleteSequences;
 import com.ecoronelgit.api.core.action.GetStats;
 import com.ecoronelgit.api.core.action.IsMutant;
 import com.ecoronelgit.api.core.action.SaveMutantDNA;
@@ -23,13 +24,13 @@ public class MutantConfiguration {
     }
 
     @Bean
-    public GetStats getStats(MutantDNARepository mutantDNARepository) {
-        return new GetStats(mutantDNARepository);
+    public DeleteSequences deleteSequences(MutantDNARepository mutantDNARepository) {
+        return new DeleteSequences(mutantDNARepository);
     }
 
     @Bean
-    public MutantDNARepository mutantDNARepository() {
-        return new MemoryMutantDNARepository();
+    public GetStats getStats(MutantDNARepository mutantDNARepository) {
+        return new GetStats(mutantDNARepository);
     }
 
     @Bean

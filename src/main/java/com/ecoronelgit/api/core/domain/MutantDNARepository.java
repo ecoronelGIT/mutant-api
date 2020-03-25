@@ -1,6 +1,5 @@
 package com.ecoronelgit.api.core.domain;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface MutantDNARepository {
@@ -11,4 +10,5 @@ public interface MutantDNARepository {
 
     List<String[]> getDNASequences(boolean isMutant);
 
+    void deleteAll();
 }

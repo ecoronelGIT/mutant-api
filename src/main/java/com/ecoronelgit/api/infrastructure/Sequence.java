@@ -1,6 +1,10 @@
 package com.ecoronelgit.api.infrastructure;
 
+import org.springframework.data.annotation.Id;
+
 public class Sequence {
+    @Id
+    private String id;
     private String[] dna;
     private boolean isMutant;
 
@@ -23,5 +27,13 @@ public class Sequence {
 
     public void setMutant(boolean mutant) {
         isMutant = mutant;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
