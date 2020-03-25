@@ -8,6 +8,9 @@ import java.util.List;
 
 public class IsMutant {
     private final DNASequenceService dnaSequenceService;
+    /**
+     * Check al dna sequence that are not human or mutant
+     */
     private List<DNAValidator> dnaValidators =  Arrays.asList(  new EmptyDNAValidator(),
                                                                 new NullDNAValidator(),
                                                                 new SquareMatrixDNAValidator(),

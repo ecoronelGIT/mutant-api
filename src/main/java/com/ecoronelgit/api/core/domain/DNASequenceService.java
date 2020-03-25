@@ -5,6 +5,9 @@ import com.ecoronelgit.api.core.domain.util.DNACounterUtil;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This Service is in charge of check DNA Sequence an look for mutants.
+ */
 public class DNASequenceService {
 
     private static final char EMPTY_DNA = ' ';
@@ -21,9 +24,13 @@ public class DNASequenceService {
         for(int row = 0; row < dnaSequence.length; row++) {
             String sequence = dnaSequence[row];
             for(int column = 0; column < sequence.length(); column++) {
+                //Horizontal Mutant Check
                 checkDNA(dnaHorizontalCounter, sequence.charAt(column));
+                //Vertical Mutant Check
                 verticalCheckDNA(sequence, column);
+                //Oblique Mutant Check
                 obliqueCheckDNA(sequence, column, row, dnaSequence.length);
+                //If found 2 sequence of mutant return true
                 if(isMutant())
                     return true;
             }
