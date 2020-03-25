@@ -1,7 +1,7 @@
 # mutant-api
 API Rest / Spring Boot 
 
-This app is builded with Interaction Driver Disign software design process and TDD.
+This app is builded with Interaction Driver Design software design process and TDD.
 
 ### Relevant Articles
 #### **Interaction-Driven Design (IDD)**
